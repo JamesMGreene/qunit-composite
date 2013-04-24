@@ -1,3 +1,12 @@
+/**
+ * JUnit reporter for QUnit v1.0.1pre
+ *
+ * https://github.com/jquery/qunit-composite
+ *
+ * Copyright 2013 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * https://jquery.org/license/
+ */
 (function( QUnit ) {
 var iframe, hasBound, addClass,
 	modules = 1,
