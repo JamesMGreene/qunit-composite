@@ -20,9 +20,9 @@
     "url": "http://www.opensource.org/licenses/mit-license.php"
   },
   "keywords": [
-    "testing",
-    "unit",
-    "jquery"
+    "qunit",
+    "qunit-plugin",
+    "composite"
   ],
   "main": "qunit-composite.js",
   "scripts": {
