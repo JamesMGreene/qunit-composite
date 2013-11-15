@@ -9,16 +9,15 @@
 	<script src="../qunit-composite.js"></script>
 	<script>
 		QUnit.testSuites([
-			"../node_modules/qunitjs/test/index.html",
-			"../node_modules/qunitjs/addons/canvas/canvas.html",
-			"../node_modules/qunitjs/addons/close-enough/close-enough.html",
-			{ name: "step tests", path: "../node_modules/qunitjs/addons/step/step.html" }
+			"./foo.html",
+			"./bar.html",
+			{ name: "Quux Test Suite", path: "./quux.html" },
+			{ name: "QUnit Core Test Suite", path: "../node_modules/qunitjs/test/index.html" }
 		]);
 	</script>
 </head>
 <body>
 	<div id="qunit"></div>
-	<div id="qunit-fixture">
-</div>
+	<div id="qunit-fixture"></div>
 </body>
 </html>
