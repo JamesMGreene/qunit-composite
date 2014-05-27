@@ -5,7 +5,7 @@
   "version": "1.0.2pre",
   "author": {
     "name": "jQuery Foundation and other contributors",
-    "url": "https://github.com/jquery/qunit/blob/master/AUTHORS.txt"
+    "url": "https://github.com/jquery/qunit-composite/blob/master/AUTHORS.txt"
   },
   "homepage": "https://github.com/jquery/qunit-composite",
   "repository": {
@@ -17,7 +17,7 @@
   },
   "license": {
     "name": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
+    "url": "https://github.com/jquery/qunit-composite/blob/master/LICENSE.txt"
   },
   "keywords": [
     "qunit",
