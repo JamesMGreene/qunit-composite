@@ -1,4 +1,5 @@
-# QUnit Composite [![Build Status](https://travis-ci.org/jquery/qunit-composite.png)](https://travis-ci.org/jquery/qunit-composite) [![NPM version](https://badge.fury.io/js/qunit-composite.png)](http://badge.fury.io/js/qunit-composite)
+[![Build Status](https://travis-ci.org/jquery/qunit-composite.svg?branch=master)](https://travis-ci.org/jquery/qunit-composite) [![NPM version](https://badge.fury.io/js/qunit-composite.svg)](http://badge.fury.io/js/qunit-composite)
+# QUnit Composite
 
 Composite is a QUnit plugin that, when handed an array of files, will
 open each of those files inside of an iframe, run the tests, and
