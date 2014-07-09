@@ -28,7 +28,7 @@ addClass = typeof QUnit.addClass === "function" ?
 		};
 	})();
 
-function runSuite( suite ) {
+function runSuite( suite, queryTop ) {
 	var path;
 
 	if ( QUnit.is( "object", suite ) ) {
@@ -36,6 +36,37 @@ function runSuite( suite ) {
 		suite = suite.name;
 	} else {
 		path = suite;
+	}
+
+	// Parse this iframe's query string
+	var query = parseQuery( path );
+
+	// If queryTop or query is not empty...
+	if ( queryTop || query ) {
+		// Replace this iframe's query keys with matching keys from top frame
+		var search = $.extend( query, queryTop );
+
+		var urlParts = path.split( "?" );
+		var pathParts = path.split( "#" );
+		var hash = pathParts[ 1 ];
+
+		// If there is anything after "?",
+		// take only that's what's before it for now
+		if ( urlParts.length > 1 || pathParts.length > 1 ) {
+			path = pathParts[ 0 ].split( "?" )[ 0 ];
+		}
+
+		var searchPairs = [];
+
+		// Join query key-value pairs into array if pairs
+		$.each( search, function ( key, value ) {
+			searchPairs.push( key + "=" + (value || "") );
+		});
+
+		// Assemble path
+		path += "?"
+			+ searchPairs.join( "&" )
+			+ ( hash ? "#" + hash : "" );
 	}
 
 	QUnit.asyncTest( suite, function() {
@@ -92,6 +123,30 @@ function initIframe() {
 	iframeWin = iframe.contentWindow;
 }
 
+function parseQuery( str ) {
+	var urlParts = str.split( "?" );
+
+	// No query present in given URL
+	if ( urlParts.length === 1 ) {
+		return {};
+	}
+
+	var search = urlParts[ 1 ].split( "#" )[ 0 ].split( "&" ),
+	    query = {},
+	    queryPart;
+
+	// Parse query into object
+	for( var i in search ) {
+		if ( search.hasOwnProperty( i ) && search[ i ] ) {
+			// Add to query object
+			queryPart = search[ i ].split( "=" );
+			query[ queryPart [ 0 ] ] = queryPart[ 1 ];
+		}
+	}
+
+	return query;
+}
+
 /**
  * @param {string} [name] Module name to group these test suites.
  * @param {Array} suites List of suites where each suite
@@ -128,8 +183,24 @@ QUnit.testSuites = function( name, suites ) {
 		}
 	});
 
+	var query = parseQuery( location.search );
+	var queryKeys = [];
+
+	// Pass only those query keys that are defined in QUnit.config.urlConfig:
+	// Find the keys first
+	$.each( QUnit.config.urlConfig, function ( i, config ) {
+		queryKeys.push( config.id );
+	});
+
+	// Remove keys that aren't part of QUnit.config.urlConfig from set
+	$.each( query, function ( queryKey, value ) {
+		if ( $.inArray( queryKey, queryKeys ) === -1 ) {
+			delete query[ queryKey ];
+		}
+	});
+
 	for ( i = 0; i < suitesLen; i++ ) {
-		runSuite( suites[ i ] );
+		runSuite( suites[ i ], query );
 	}
 };
 
