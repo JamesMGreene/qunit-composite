@@ -29,7 +29,7 @@ addClass = typeof QUnit.addClass === "function" ?
 	})();
 
 function runSuite( suite, queryTop ) {
-	var path;
+	var path, query;
 
 	if ( QUnit.is( "object", suite ) ) {
 		path = suite.path;
@@ -39,16 +39,16 @@ function runSuite( suite, queryTop ) {
 	}
 
 	// Parse this iframe's query string
-	var query = parseQuery( path );
+	query = parseQuery( path );
 
 	// If queryTop or query is not empty...
 	if ( queryTop || query ) {
 		// Replace this iframe's query keys with matching keys from top frame
-		var search = $.extend( query, queryTop );
-
-		var urlParts = path.split( "?" );
-		var pathParts = path.split( "#" );
-		var hash = pathParts[ 1 ];
+		var search = $.extend( query, queryTop ),
+			urlParts = path.split( "?" ),
+			pathParts = path.split( "#" ),
+			hash = pathParts[ 1 ],
+			searchPairs = [], pathQuery;
 
 		// If there is anything after "?",
 		// take only that's what's before it for now
@@ -56,14 +56,12 @@ function runSuite( suite, queryTop ) {
 			path = pathParts[ 0 ].split( "?" )[ 0 ];
 		}
 
-		var searchPairs = [];
-
 		// Join query key-value pairs into array if pairs
 		$.each( search, function ( key, value ) {
 			searchPairs.push( key + "=" + (value || "") );
 		});
 
-		var pathQuery = searchPairs.join( "&" )
+		pathQuery = searchPairs.join( "&" )
 			+ ( hash ? "#" + hash : "" );
 
 		// Assemble path
@@ -125,16 +123,16 @@ function initIframe() {
 }
 
 function parseQuery( str ) {
-	var urlParts = str.split( "?" );
+	var urlParts = str.split( "?" ),
+		search, query, queryPart;
 
 	// No query present in given URL
 	if ( urlParts.length === 1 ) {
 		return {};
 	}
 
-	var search = urlParts[ 1 ].split( "#" )[ 0 ].split( "&" ),
-	    query = {},
-	    queryPart;
+	search = urlParts[ 1 ].split( "#" )[ 0 ].split( "&" ),
+	query = {};
 
 	// Parse query into object
 	for( var i in search ) {
@@ -155,7 +153,7 @@ function parseQuery( str ) {
  *  or an object with a path and name property.
  */
 QUnit.testSuites = function( name, suites ) {
-	var i, suitesLen;
+	var i, suitesLen, query, queryKeys;
 
 	if ( arguments.length === 1 ) {
 		suites = name;
@@ -184,8 +182,8 @@ QUnit.testSuites = function( name, suites ) {
 		}
 	});
 
-	var query = parseQuery( location.search );
-	var queryKeys = [];
+	query = parseQuery( location.search );
+	queryKeys = [];
 
 	// Pass only those query keys that are defined in QUnit.config.urlConfig:
 	// Find the keys first
