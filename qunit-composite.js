@@ -63,10 +63,11 @@ function runSuite( suite, queryTop ) {
 			searchPairs.push( key + "=" + (value || "") );
 		});
 
-		// Assemble path
-		path += "?"
-			+ searchPairs.join( "&" )
+		var pathQuery = searchPairs.join( "&" )
 			+ ( hash ? "#" + hash : "" );
+
+		// Assemble path
+		path = path + ( pathQuery.length ? "?" + pathQuery : "" );
 	}
 
 	QUnit.asyncTest( suite, function() {
