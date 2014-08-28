@@ -8,25 +8,29 @@
  * https://jquery.org/license/
  */
 (function( QUnit ) {
-var iframe, hasBound, addClass,
+var iframe, hasBound,
 	modules = 1,
 	executingComposite = false;
 
-// TODO: Kill this fallback method once QUnit 1.12 is released
-addClass = typeof QUnit.addClass === "function" ?
-	QUnit.addClass :
-	(function() {
-		var hasClass = typeof QUnit.hasClass === "function" ?
-			QUnit.hasClass :
-			function hasClass( elem, name ) {
-				return ( " " + elem.className + " " ).indexOf( " " + name + " " ) > -1;
-			};
-		return function addClass( elem, name ) {
-			if ( !hasClass( elem, name ) ) {
-				elem.className += ( elem.className ? " " : "" ) + name;
-			}
-		};
-	})();
+function hasClass( elem, name ) {
+	return ( " " + elem.className + " " ).indexOf( " " + name + " " ) > -1;
+}
+
+function addClass( elem, name ) {
+	if ( !hasClass( elem, name ) ) {
+		elem.className += ( elem.className ? " " : "" ) + name;
+	}
+}
+
+function addEvent( elem, type, fn ) {
+	if ( elem.addEventListener ) {
+		// Standards-based browsers
+		elem.addEventListener( type, fn, false );
+	} else if ( elem.attachEvent ) {
+		// support: IE <9
+		elem.attachEvent( "on" + type, fn );
+	}
+}
 
 function runSuite( suite ) {
 	var path;
@@ -87,7 +91,7 @@ function initIframe() {
 	iframe.className = "qunit-composite-suite";
 	body.appendChild( iframe );
 
-	QUnit.addEvent( iframe, "load", onIframeLoad );
+	addEvent( iframe, "load", onIframeLoad );
 
 	iframeWin = iframe.contentWindow;
 }
@@ -133,17 +137,22 @@ QUnit.testSuites = function( name, suites ) {
 	}
 };
 
-QUnit.testDone(function() {
+QUnit.testDone(function( data ) {
 	if ( !executingComposite ) {
 		return;
 	}
 
 	var i, len,
-		current = QUnit.id( this.config.current.id ),
+		id = data.testNumber != null ?
+			"qunit-test-output" + data.testNumber :
+			QUnit.config.current.testNumber != null ?
+				"qunit-test-output" + QUnit.config.current.testNumber :
+				QUnit.config.current.id,
+		current = document.getElementById( id ),
 		children = current.children,
 		src = iframe.src;
 
-	QUnit.addEvent( current, "dblclick", function( e ) {
+	addEvent( current, "dblclick", function( e ) {
 		var target = e && e.target ? e.target : window.event.srcElement;
 		if ( target.nodeName.toLowerCase() === "span" || target.nodeName.toLowerCase() === "b" ) {
 			target = target.parentNode;
