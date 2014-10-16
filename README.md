@@ -27,7 +27,7 @@ QUnit.testSuites([
 
 Optionally, give the composed module a name (defaults to "Composition #1"):
 
-```
+```js
 QUnit.testSuites( "Example tests", [
     "example-test-1.html",
     "example-test-2.html"
