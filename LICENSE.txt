@@ -1,9 +1,9 @@
-Copyright 2011, 2014 jQuery Foundation and other contributors,
+Copyright 2011-2015 jQuery Foundation and other contributors,
 https://jquery.org/
 
 This software consists of voluntary contributions made by many
 individuals. For exact contribution history, see the revision history
-available at https://github.com/jquery/qunit-composite
+available at https://github.com/JamesMGreene/qunit-composite
 
 The following license applies to all parts of this software except as
 documented below:

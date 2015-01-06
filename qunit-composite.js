@@ -1,9 +1,9 @@
 /**
- * JUnit reporter for QUnit v1.0.2pre
+ * QUnit Composite v1.0.3
  *
- * https://github.com/jquery/qunit-composite
+ * https://github.com/JamesMGreene/qunit-composite
  *
- * Copyright 2013 jQuery Foundation and other contributors
+ * Copyright 2011-2015 jQuery Foundation and other contributors
  * Released under the MIT license.
  * https://jquery.org/license/
  */

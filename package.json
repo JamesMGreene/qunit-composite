@@ -2,27 +2,37 @@
   "name": "qunit-composite",
   "title": "QUnit Composite plugin",
   "description": "Run multiple QUnit test suite pages.",
-  "version": "1.0.3-pre",
+  "version": "1.0.3",
   "author": {
     "name": "jQuery Foundation and other contributors",
-    "url": "https://github.com/jquery/qunit-composite/blob/master/AUTHORS.txt"
+    "url": "https://github.com/JamesMGreene/qunit-composite/blob/master/AUTHORS.txt"
   },
-  "homepage": "https://github.com/jquery/qunit-composite",
+  "maintainers": [
+    {
+      "name": "James M. Greene",
+      "email": "james.m.greene@gmail.com",
+      "url": "http://greene.io/"
+    }
+  ],
+  "homepage": "https://github.com/JamesMGreene/qunit-composite",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jquery/qunit-composite.git"
+    "url": "git://github.com/JamesMGreene/qunit-composite.git"
   },
   "bugs": {
-    "url": "https://github.com/jquery/qunit-composite/issues"
+    "url": "https://github.com/JamesMGreene/qunit-composite/issues"
   },
   "license": {
     "name": "MIT",
-    "url": "https://github.com/jquery/qunit-composite/blob/master/LICENSE.txt"
+    "url": "https://github.com/JamesMGreene/qunit-composite/blob/master/LICENSE.txt"
   },
   "keywords": [
     "qunit",
     "qunit-plugin",
-    "composite"
+    "composite",
+    "multiple",
+    "suites",
+    "pages"
   ],
   "main": "qunit-composite.js",
   "scripts": {
