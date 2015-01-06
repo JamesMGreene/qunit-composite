@@ -2,7 +2,7 @@
   "name": "qunit-composite",
   "title": "QUnit Composite plugin",
   "description": "Run multiple QUnit test suite pages.",
-  "version": "1.0.4-pre",
+  "version": "1.0.4",
   "author": {
     "name": "jQuery Foundation and other contributors",
     "url": "https://github.com/JamesMGreene/qunit-composite/blob/master/AUTHORS.txt"
