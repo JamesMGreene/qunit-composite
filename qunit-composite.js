@@ -3,7 +3,7 @@
  *
  * https://github.com/JamesMGreene/qunit-composite
  *
- * Copyright 2011-2015 jQuery Foundation and other contributors
+ * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
  * https://jquery.org/license/
  */
