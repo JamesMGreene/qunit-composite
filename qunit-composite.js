@@ -143,14 +143,22 @@ QUnit.testDone(function( data ) {
 	}
 
 	var i, len,
-		id = data.testNumber != null ?
-			"qunit-test-output" + data.testNumber :
-			QUnit.config.current.testNumber != null ?
-				"qunit-test-output" + QUnit.config.current.testNumber :
-				QUnit.config.current.id,
-		current = document.getElementById( id ),
-		children = current.children,
+		testId = data.testId || QUnit.config.current.testId || data.testNumber || QUnit.config.current.testNumber,
+		current = testId ?
+			(
+				// QUnit @^1.16.0
+				document.getElementById( "qunit-test-output-" + testId ) ||
+				// QUnit @1.15.x
+				document.getElementById( "qunit-test-output" + testId )
+			) :
+			// QUnit @<1.15.0
+			document.getElementById( QUnit.config.current.id ),
+		children = current && current.children,
 		src = iframe.src;
+
+	if (!(current && children)) {
+		return;
+	}
 
 	addEvent( current, "dblclick", function( e ) {
 		var target = e && e.target ? e.target : window.event.srcElement;
