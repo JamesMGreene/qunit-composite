@@ -1,5 +1,5 @@
 /**
- * QUnit Composite v1.0.3
+ * QUnit Composite v1.0.4-pre
  *
  * https://github.com/JamesMGreene/qunit-composite
  *
