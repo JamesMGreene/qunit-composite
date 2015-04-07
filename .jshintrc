@@ -13,6 +13,7 @@
 	"trailing": true,
 	"undef": true,
 	"predef": [
+		"define",
 		"module",
 		"test",
 		"asyncTest",
