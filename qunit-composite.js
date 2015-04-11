@@ -107,6 +107,41 @@ function initIframe() {
 	iframeWin = iframe.contentWindow;
 }
 
+function appendSuitesToHeader( suites ) {
+	var i, suitesLen, suite, path, name, suitesEl, testResultEl,
+		newSuiteListItemEl, newSuiteLinkEl;
+
+	suitesEl = document.getElementById("qunit-testsuites");
+
+	if (!suitesEl) {
+		testResultEl = document.getElementById("qunit-testresult");
+
+		if (!testResultEl) {
+			// QUnit has not been set up yet. Defer until QUnit is ready.
+			QUnit.begin(function () {
+				appendSuitesToHeader(suites);
+			});
+			return;
+		}
+
+		suitesEl = document.createElement("ul");
+		suitesEl.id = "qunit-testsuites";
+		testResultEl.parentNode.insertBefore(suitesEl, testResultEl);
+	}
+
+	for (i = 0, suitesLen = suites.length; i < suitesLen; ++i) {
+		suite = suites[i];
+		newSuiteLinkEl = document.createElement("a");
+		newSuiteLinkEl.innerHTML = suite.name || suite;
+		newSuiteLinkEl.href = suite.path || suite;
+
+		newSuiteListItemEl = document.createElement("li");
+		newSuiteListItemEl.appendChild(newSuiteLinkEl);
+
+		suitesEl.appendChild(newSuiteListItemEl);
+	}
+}
+
 /**
  * @param {string} [name] Module name to group these test suites.
  * @param {Array} suites List of suites where each suite
@@ -121,6 +156,8 @@ QUnit.testSuites = function( name, suites ) {
 		name = "Composition #" + modules++;
 	}
 	suitesLen = suites.length;
+
+	appendSuitesToHeader(suites);
 
 	if ( !hasBound ) {
 		hasBound = true;
