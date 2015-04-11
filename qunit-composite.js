@@ -131,11 +131,11 @@ function appendSuitesToHeader( suites ) {
 
 	for (i = 0, suitesLen = suites.length; i < suitesLen; ++i) {
 		suite = suites[i];
-		newSuiteLinkEl = document.createElement("A");
+		newSuiteLinkEl = document.createElement("a");
 		newSuiteLinkEl.innerHTML = suite.name || suite;
 		newSuiteLinkEl.href = suite.path || suite;
 
-		newSuiteListItemEl = document.createElement("LI");
+		newSuiteListItemEl = document.createElement("li");
 		newSuiteListItemEl.appendChild(newSuiteLinkEl);
 
 		suitesEl.appendChild(newSuiteListItemEl);
