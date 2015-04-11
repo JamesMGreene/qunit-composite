@@ -109,37 +109,37 @@ function initIframe() {
 
 function appendSuitesToHeader( suites ) {
 	var i, suitesLen, suite, path, name, suitesEl, testResultEl,
-        newSuiteListItemEl, newSuiteLinkEl;
+		newSuiteListItemEl, newSuiteLinkEl;
 
 	suitesEl = document.getElementById("qunit-testsuites");
 
 	if (!suitesEl) {
 		testResultEl = document.getElementById("qunit-testresult");
 
-        if (!testResultEl) {
-            // QUnit has not been set up yet. Defer until QUnit is ready.
-            QUnit.begin(function () {
-                appendSuitesToHeader(suites);
-            });
-            return;
-        }
+		if (!testResultEl) {
+			// QUnit has not been set up yet. Defer until QUnit is ready.
+			QUnit.begin(function () {
+				appendSuitesToHeader(suites);
+			});
+			return;
+		}
 
 		suitesEl = document.createElement("ul");
-        suitesEl.id = "qunit-testsuites";
-        testResultEl.parentNode.insertBefore(suitesEl, testResultEl);
+		suitesEl.id = "qunit-testsuites";
+		testResultEl.parentNode.insertBefore(suitesEl, testResultEl);
 	}
 
-    for (i = 0, suitesLen = suites.length; i < suitesLen; ++i) {
-        suite = suites[i];
-        newSuiteLinkEl = document.createElement("A");
-        newSuiteLinkEl.innerHTML = suite.name || suite;
-        newSuiteLinkEl.href = suite.path || suite;
+	for (i = 0, suitesLen = suites.length; i < suitesLen; ++i) {
+		suite = suites[i];
+		newSuiteLinkEl = document.createElement("A");
+		newSuiteLinkEl.innerHTML = suite.name || suite;
+		newSuiteLinkEl.href = suite.path || suite;
 
-        newSuiteListItemEl = document.createElement("LI");
-        newSuiteListItemEl.appendChild(newSuiteLinkEl);
+		newSuiteListItemEl = document.createElement("LI");
+		newSuiteListItemEl.appendChild(newSuiteLinkEl);
 
-        suitesEl.appendChild(newSuiteListItemEl);
-    }
+		suitesEl.appendChild(newSuiteListItemEl);
+	}
 }
 
 /**
@@ -157,7 +157,7 @@ QUnit.testSuites = function( name, suites ) {
 	}
 	suitesLen = suites.length;
 
-    appendSuitesToHeader(suites);
+	appendSuitesToHeader(suites);
 
 	if ( !hasBound ) {
 		hasBound = true;
