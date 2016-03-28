@@ -7,3 +7,4 @@ James M. Greene <james.m.greene@gmail.com>
 Matthew Mirande <itsbusticated@gmail.com>
 Scott González <scott.gonzalez@gmail.com>
 Anne-Gaelle Colom <coloma@westminster.ac.uk>
+Kevin Partington <kevin.partington@kernelpanicstudios.com>
