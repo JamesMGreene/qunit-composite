@@ -41,6 +41,6 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-qunit": "^1.1.0",
     "grunt-git-authors": "^3.1.1",
-    "qunitjs": "1.19.x"
+    "qunitjs": "^1.23.0"
   }
 }
