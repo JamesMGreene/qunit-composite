@@ -95,7 +95,9 @@ function initIframe() {
 		});
 
 		// Continue the outer test when the iframe's test is done
-		iframeWin.QUnit.done( QUnit.start );
+		iframeWin.QUnit.done(function() {
+			QUnit.start();
+		});
 	}
 
 	iframe = document.createElement( "iframe" );
