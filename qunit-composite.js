@@ -49,6 +49,9 @@ function runSuite( suite ) {
 	}
 
 	QUnit.asyncTest( suite, function() {
+		if(iframe === undefined){
+			initIframe();
+		}
 		iframe.setAttribute( "src", path );
 		// QUnit.start is called from the child iframe's QUnit.done hook.
 	});
