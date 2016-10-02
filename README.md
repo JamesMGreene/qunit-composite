@@ -11,6 +11,14 @@ outside the composite runner.
 If you want to see what assertion failed in a long list of assertions,
 just use the regular "Hide passed tests" checkbox.
 
+
+## Compatibility
+
+QUnit Composite `>=2.0.0` is compatible with QUnit `>=1.18.0 <3.0.0`.
+
+QUnit Composite `<2.0.0` (e.g. [`v1.2.2`](https://github.com/JamesMGreene/qunit-composite/releases/tag/v1.2.2)) is compatible with QUnit `<2.0.0`.
+
+
 ## Usage
 
 Load QUnit itself as usual _plus_ `qunit-composite.css` and `qunit-composite.js`,
@@ -33,6 +41,7 @@ QUnit.testSuites( "Example tests", [
     "example-test-2.html"
 ]);
 ```
+
 
 ## Notes
  - Although it is possible to do so, we do not recommend mixing QUnit Composite suites (`QUnit.testSuites`) on the same page
