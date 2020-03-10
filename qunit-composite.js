@@ -71,6 +71,8 @@ function initIframe() {
 		// Deal with QUnit being loaded asynchronously via AMD
 		if ( !iframeWin.QUnit && iframeWin.define && iframeWin.define.amd ) {
 			return iframeWin.require( [ "qunit" ], onIframeLoad );
+		} else if (!iframeWin.QUnit && iframeWin.HTMLImports) {
+			return new Promise(resolve => iframeWin.addEventListener('WebComponentsReady', resolve)).then(onIframeLoad);
 		}
 
 		iframeWin.QUnit.moduleStart(function( data ) {
