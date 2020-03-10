@@ -71,6 +71,8 @@ function initIframe() {
 		// Deal with QUnit being loaded asynchronously via AMD
 		if ( !iframeWin.QUnit && iframeWin.define && iframeWin.define.amd ) {
 			return iframeWin.require( [ "qunit" ], onIframeLoad );
+		} else if (!iframeWin.QUnit && iframeWin.HTMLImports) {
+			return new Promise(resolve => iframeWin.addEventListener('WebComponentsReady', resolve)).then(onIframeLoad);
 		}
 
 		iframeWin.QUnit.moduleStart(function( data ) {
@@ -93,7 +95,12 @@ function initIframe() {
 			// Pass all test details through to the main page
 			var message = ( moduleName ? moduleName + ": " : "" ) + testName + ": " + ( data.message || ( data.result ? "okay" : "failed" ) );
 			suiteAssert.expect( ++count );
-			suiteAssert.push( data.result, data.actual, data.expected, message );
+			suiteAssert.pushResult( {
+				result: data.result,
+				actual: data.actual,
+				expected: data.expected,
+				message: message
+			 } );
 		});
 
 		// Continue the outer test when the iframe's test is done
